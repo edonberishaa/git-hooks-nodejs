@@ -22,6 +22,7 @@ export default [
       sourceType: "module",
     },
     rules: {
+          "linebreak-style": 0, // disable check
       // custom overrides here
     },
   },
