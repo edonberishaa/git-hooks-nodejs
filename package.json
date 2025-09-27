@@ -6,13 +6,14 @@
     "test": "jest",
     "lint": "eslint src/**",
     "lint-fix": "eslint src/** --fix",
-    "success-message": "echo Thanks for comitting $GIT_AUTHOR_NAME" 
+    "success-message": "echo Thanks for comitting $GIT_AUTHOR_NAME"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@commitlint/cli": "^20.0.0",
     "@eslint/js": "^9.36.0",
     "eslint": "^9.36.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -26,6 +27,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "post-commit": "npm run success-message"
     }
   },
@@ -34,5 +36,15 @@
       "eslint",
       "jest --findRelatedTests"
     ]
+  },
+  "commitlint":{
+    "rules":{
+      "references-empty": [2,"never"]
+    },
+    "parserPreset":{
+      "parserOpts":{
+        "issuePrefixes": ["ISSUE-"]
+      }
+    }
   }
 }
