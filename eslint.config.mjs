@@ -3,11 +3,16 @@ import js from "@eslint/js";
 import globals from "globals";
 import { FlatCompat } from "@eslint/eslintrc";
 
-const compat = new FlatCompat();
+const compat = new FlatCompat({
+  baseDirectory: import.meta.dirname, // ensures resolution works
+});
 
 export default [
   js.configs.recommended,
-  ...compat.extends("airbnb-base"), // load Airbnb config in flat mode
+
+  // Load Airbnb config in flat mode
+  ...compat.extends("airbnb-base"),
+
   {
     files: ["**/*.{js,mjs,cjs}"],
     languageOptions: {
